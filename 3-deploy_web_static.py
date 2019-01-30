@@ -7,9 +7,9 @@ from fabric.decorators import runs_once
 import datetime
 from os.path import isfile, splitext, abspath
 
-env.hosts = ['35.243.137.120', '35.227.93.69']
+env.hosts = ['35.185.83.178', '35.231.84.152']
 env.user = 'ubuntu'
-env.key_filename = '~/.ssh/id_rsa'
+env.key_filename = '~/.ssh/holberton_server'
 
 
 @runs_once
