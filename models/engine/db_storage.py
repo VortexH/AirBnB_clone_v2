@@ -28,8 +28,8 @@ class DBStorage:
             "mysql+mysqldb://{}:{}@{}/{}".format(
                 user, pwd, host, db), pool_pre_ping=True)
 
-        Session = sessionmaker(bind=self.__engine)
-        self.__session = Session()
+        # Session = sessionmaker(bind=self.__engine)
+        # self.__session = Session()
 
         if env == 'test':
             Base.metadata.drop_all(bind=self.__engine)
@@ -46,9 +46,9 @@ class DBStorage:
                        table, instance.id)] = instance
 
         else:
-            for instance in self.__session.query(cls).all():
+            for instance in self.__session.query(eval(cls)).all():
                 filtered_dict["{}.{}".format(
-                    cls.__name__, instance.id)] = instance
+                    eval(cls).__name__, instance.id)] = instance
 
         return filtered_dict
 
@@ -80,3 +80,7 @@ class DBStorage:
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """ Calls the remove method to close a session """
+        self.__session.close()
