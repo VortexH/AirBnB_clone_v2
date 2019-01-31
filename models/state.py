@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This is the state class"""
 from models.base_model import BaseModel, Base
+from models.city import City
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String
 import os
@@ -20,11 +21,15 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
+        """ Finds the instances of City whose state_id matches the id in State
+
+            Returns:
+                a list of city instances
+
+        """
         city_instances = []
-        for cls_name_id, cls_instance in models.storage.all().items():
-            class_name_id_list = cls_name_id.split('.')
-            if class_name_id_list[0] == "State"\
-                    and class_name_id_list[1] == City.state_id:
-                city_instances.append(cls_instance)
+        for city_nameid, city_instance in models.storage.all(City).items():
+            if city_instance.state_id == self.id:
+                city_instances.append(city_instance)
 
         return city_instances
