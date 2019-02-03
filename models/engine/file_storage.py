@@ -33,7 +33,7 @@ class FileStorage:
         if cls is not None:
             filtered_dict = {}
             for cls_name_id, cls_instance in self.__objects.items():
-                if cls_name_id.split('.')[0] == cls.__name__:
+                if cls_name_id.split('.')[0] == eval(cls).__name__:
                     filtered_dict[cls_name_id] = cls_instance
             return filtered_dict
         return self.__objects
