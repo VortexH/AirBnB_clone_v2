@@ -5,7 +5,6 @@ Contains the route for delivering a list of states using an HTML file
 
 from flask import Flask, render_template
 from models import storage
-from models.state import State
 
 app = Flask(__name__)
 
@@ -19,10 +18,13 @@ def deliver_states_html():
             the storage medium
     """
 
-    states_dict = storage.all(State)
+    state_instance_list = list(storage.all("State").values())
+    sorted_state_instance_list = sorted(
+        state_instance_list, key=lambda k: k.name)
 
-
-
+    return render_template(
+            '7-states_list.html',
+            sorted_state_instance_list=sorted_state_instance_list)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <HTML lang="en">
-	<HEAD>
-		<TITLE>HBNB</TITLE>
-	</HEAD>
-
-	<BODY>
-		<H1>States</H1>
-		<UL>
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+        <UL>
+		{% for single_instance in sorted_state_instance_list %}
+		<LI>{{ single_instance.id }}: <B>{{ single_instance.name }}</B></LI>
+		{% endfor %}
+        </UL>
+    </BODY>
+</HTML>
 
