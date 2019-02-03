@@ -22,15 +22,13 @@ def deliver_states_html():
     sorted_state_instance_list = sorted(
         state_instance_list, key=lambda k: k.name)
 
-    close_session()
-
     return render_template(
             '7-states_list.html',
             sorted_state_instance_list=sorted_state_instance_list)
 
 
 @app.teardown_appcontext
-def close_session():
+def close_session(func):
     storage.close()
 
 if __name__ == "__main__":
