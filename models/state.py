@@ -18,18 +18,18 @@ class State(BaseModel, Base):
     if os.getenv("HBNB_TYPE_STORAGE") == 'db':
         name = Column(String(128), nullable=False)
         cities = relationship("City", passive_deletes=True, backref="state")
+    else:
+        @property
+        def cities(self):
+            """ Finds the instances of City whose state_id matches the id in State
 
-    @property
-    def cities(self):
-        """ Finds the instances of City whose state_id matches the id in State
+                Returns:
+                    a list of city instances
 
-            Returns:
-                a list of city instances
+            """
+            city_instances = []
+            for city_nameid, city_instance in models.storage.all(City).items():
+                if city_instance.state_id == self.id:
+                    city_instances.append(city_instance)
 
-        """
-        city_instances = []
-        for city_nameid, city_instance in models.storage.all(City).items():
-            if city_instance.state_id == self.id:
-                city_instances.append(city_instance)
-
-        return city_instances
+            return city_instances
