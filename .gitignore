@@ -5,3 +5,7 @@ models/engine/__pycache__/
 __pycache__/
 \#*\#
 file.json
+10-dump.sql
+7-dump.sql
+versions/
+main.py
