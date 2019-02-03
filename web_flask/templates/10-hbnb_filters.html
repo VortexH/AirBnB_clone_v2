@@ -16,35 +16,30 @@
       <section class="filters">
 	<div class="locations">
 	  <h3>States</h3>
-	  <h4>California, Arizona</h4>
+	  <h4>&nbsp;</h4>
 	  <div class="popover">
 	    <ul>
 	      <li>
-		<h2>Arizona:</h2>
-		<ul>
-		  <li>Pheonix</li>
-		  <li>Sedona</li>
+	      {% for state_instance in sorted_state_instance_list %}
+	      	<h2>{{ state_instance.name }}:</h2>
+	        <ul>
+			{% for city_instance in state_instance.cities|sort(attribute='name') %}
+			  <li>{{ city_instance.name }}</li>
+			{% endfor %}
 		</ul>
-	      </li>
-	      <li>
-		<h2>California:</h2>
-		<ul>
-		  <li>LA</li>
-		  <li>SF</li>
-		</ul>
-	      </li>
+	       {% endfor %}
+	       </li>
 	    </ul>
 	  </div>
 	</div>
 	<div class="amenities">
 	  <h3>Amenities</h3>
-	  <h4>Internet, Kitchen</h4>
+	  <h4>&nbsp;</h4>
 	  <div class="popover">
 	    <ul>
-	      <li>Internet</li>
-	      <li>TV</li>
-	      <li>Kitchen</li>
-	      <li>Iron</li>
+		    {% for amenity in sorted_amenity_list|sort(attribute='name') %}
+		      <li>{{ amenity.name }}</li>
+		    {% endfor %}
 	    </ul>
 	  </div>
 	</div>
