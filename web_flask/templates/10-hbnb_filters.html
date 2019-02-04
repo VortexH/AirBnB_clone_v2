@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="styles/4-common.css">
-    <link rel="stylesheet" type="text/css" href="styles/3-header.css">
-    <link rel="stylesheet" type="text/css" href="styles/3-footer.css">
-    <link rel="stylesheet" type="text/css" href="styles/6-filters.css">
-    <link rel="icon" href="images/icon.png" />
+    <link rel="stylesheet" type="text/css" href="static/styles/4-common.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/3-header.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/3-footer.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/6-filters.css">
+    <link rel="icon" href="static/images/icon.png" />
     <title>HBnB</title>
   </head>
   <body>
@@ -23,9 +23,9 @@
 	      {% for state_instance in sorted_state_instance_list %}
 	      	<h2>{{ state_instance.name }}:</h2>
 	        <ul>
-			{% for city_instance in state_instance.cities|sort(attribute='name') %}
+			{%- for city_instance in state_instance.cities|sort(attribute='name') %}
 			  <li>{{ city_instance.name }}</li>
-			{% endfor %}
+			{%- endfor %}
 		</ul>
 	       {% endfor %}
 	       </li>
